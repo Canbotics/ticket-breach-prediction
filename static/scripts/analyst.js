@@ -1,28 +1,16 @@
 export class Analyst {
-    static all = [];
-
-    constructor(details) {
-        this.id = Analyst.all.length;
-        this.name = details.name;
-        this.ticketsPerDay = details.ticketsPerDay;
+    constructor(analyst) {
+        this.name = analyst.name;
+        this.ticketsPerDay = analyst.ticketsPerDay;
     }
 
-    static init() {
-        const analysts = [
-            {
-                name: 'Michael',
-                ticketsPerDay: 3
-            },
-            {
-                name: 'Matthew',
-                ticketsPerDay: 7
-            },
-            // {
-            //     name: 'Laura',
-            //     ticketsPerDay: 4
-            // },
-        ];
+    static init(analysts) {
+        const newAnalysts = [];
 
-        analysts.forEach((analyst) => this.all.push(new Analyst(analyst)));
+        analysts.forEach((analyst) => {
+            newAnalysts.push(new Analyst(analyst));
+        });
+
+        return newAnalysts;
     }
 }

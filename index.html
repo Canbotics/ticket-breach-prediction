@@ -16,86 +16,8 @@
             <h1>Technical Question Breaches</h1>
         </header>
         <main id="content">
-            <div id="projection-switcher" class="comp tabnav" role="tablist">
-                <button id="tab15-10" role="tab" aria-controls="view15-10" aria-selected="true">15 - 10</button>
-                <button id="tabview2" role="tab" aria-controls="viewview2" aria-selected="false">View 2</button>
+            <div id="projection-switcher" class="comp projection-switcher" role="tablist">
             </div>
-
-            <section id="view15-10" role="panel" aria-labelledby="tab15-10">
-                <h2>Days</h2>
-
-                <table class="comp text-centre">
-                    <thead>
-                        <tr>
-                            <th>Day</th>
-                            <th>New Tickets</th>
-                            <th>Total Tickets</th>
-                            <th>Solved Tickets</th>
-                            <th>Carried Tickets</th>
-                            <th>24 hours</th>
-                            <th>48 hours</th>
-                            <th>72 hours</th>
-                            <th>4+ days</th>
-                        </tr>
-                    </thead>
-                    <tbody id="day-table">
-                    </tbody>
-                </table>
-
-                <h2>Tickets</h2>
-
-                <table class="comp text-centre">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Day Made</th>
-                            <th>Day Solved</th>
-                            <th>Time to Solve</th>
-                            <th>Time Over</th>
-                        </tr>
-                    </thead>
-                    <tbody id="ticket-table">
-                    </tbody>
-                </table>
-            </section>
-
-            <section id="viewview2" role="panel" aria-labelledby="tabview2" hidden>
-                <h2>Days</h2>
-
-                <table class="comp text-centre">
-                    <thead>
-                        <tr>
-                            <th>Day</th>
-                            <th>New Tickets</th>
-                            <th>Total Tickets</th>
-                            <th>Solved Tickets</th>
-                            <th>Carried Tickets</th>
-                            <th>24 hours</th>
-                            <th>48 hours</th>
-                            <th>72 hours</th>
-                            <th>4+ days</th>
-                        </tr>
-                    </thead>
-                    <tbody id="day-table">
-                    </tbody>
-                </table>
-
-                <h2>Tickets</h2>
-
-                <table class="comp text-centre">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Day Made</th>
-                            <th>Day Solved</th>
-                            <th>Time to Solve</th>
-                            <th>Time Over</th>
-                        </tr>
-                    </thead>
-                    <tbody id="ticket-table">
-                    </tbody>
-                </table>
-            </section>
         </main>
         <footer id="sitefoot">
             <small>(ɔ)2022</small>
@@ -112,11 +34,11 @@
                 <button id="tab" role="tab" aria-controls="view" aria-selected="false">label</button>
             </template>
             <template id="projection-panel">
-                <section id="view" role="panel" aria-labelledby="tab">
+                <section id="panel" role="panel" aria-labelledby="tab">
                     <h2>Days</h2>
     
-                    <table class="comp text-centre">
-                        <thead>
+                    <table class="comp">
+                        <thead class="text-centre">
                             <tr>
                                 <th>Day</th>
                                 <th>New Tickets</th>
@@ -129,7 +51,7 @@
                                 <th>4+ days</th>
                             </tr>
                         </thead>
-                        <tbody id="table-body-day">
+                        <tbody class="day-table-body">
                         </tbody>
                     </table>
     
@@ -145,7 +67,7 @@
                                 <th>Time Over</th>
                             </tr>
                         </thead>
-                        <tbody id="table-body-ticket">
+                        <tbody class="ticket-table-body">
                         </tbody>
                     </table>
                 </section>
@@ -153,14 +75,14 @@
             <template id="day-table-row">
                 <tr>
                     <td class="id">ID</td>
-                    <td class="new">new</td>
-                    <td class="total">total</td>
-                    <td class="solved">solved</td>
-                    <td class="carried">solved</td>
-                    <td class="hours-24">24</td>
-                    <td class="hours-48">48</td>
-                    <td class="hours-72">72</td>
-                    <td class="hours-over">over</td>
+                    <td class="new text-centre">new</td>
+                    <td class="total text-centre">total</td>
+                    <td class="solved text-centre">solved</td>
+                    <td class="carried text-centre">solved</td>
+                    <td class="hours-24 text-centre">24</td>
+                    <td class="hours-48 text-centre">48</td>
+                    <td class="hours-72 text-centre">72</td>
+                    <td class="hours-over text-centre">over</td>
                 </tr>                
             </template> 
             <template id="ticket-table-row">
