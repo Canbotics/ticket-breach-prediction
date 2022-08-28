@@ -11,7 +11,7 @@
 
 
 
-#page-switcher {
+#projection-switcher {
     position: sticky;
     top: 0;
     z-index: 10;
@@ -22,7 +22,7 @@
     border-bottom: 3px solid var(--theme-main-dark);
 }
 
-#page-switcher button {
+#projection-switcher button {
     margin-bottom: -3px;
     padding: var(--gutter-text-small);
     background: none;
@@ -30,11 +30,11 @@
     border-bottom: 2px solid var(--theme-white);
 }
 
-#page-switcher button:hover, #page-switcher button:focus {
+#projection-switcher button:hover, #projection-switcher button:focus {
     background: var(--theme-main-dark);
     border-color: var(--theme-main-dark);
 }
-#page-switcher button[aria-selected="true"] {
+#projection-switcher button[aria-selected="true"] {
     border-bottom: 5px solid var(--theme-main-trim);
 }
 

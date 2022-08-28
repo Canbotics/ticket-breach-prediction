@@ -4,104 +4,38 @@ import { Analyst } from './analyst.js';
 import { Ticket } from './ticket.js';
 
 export class Day {
-    static all = [];
-
-    static tableBody;
     static templateTableRow;
 
-    constructor(details) {
-        this.id = Day.all.length;
+    constructor(newTickets, id) {
+        this.id = id;
 
-        this.newTickets = Ticket.createTickets(this, details.newTickets);
+        this.newTickets = Ticket.createTickets(this, newTickets);
         this.totalTickets = this.newTickets;
         this.carriedTickets;
 
         this.solvedTickets = [];
     }
 
-    static init() {
-        const days = [
-            {
-                newTickets: 15,
-            },
-            {
-                newTickets: 15,
-            },
-            {
-                newTickets: 15,
-            },
-            {
-                newTickets: 15,
-            },
-            {
-                newTickets: 15,
-            },
-            {
-                newTickets: 15,
-            },
-            {
-                newTickets: 15,
-            },
-            {
-                newTickets: 15,
-            },
-            {
-                newTickets: 15,
-            },
-            {
-                newTickets: 15,
-            },
-            {
-                newTickets: 15,
-            },
-            {
-                newTickets: 15,
-            },
-            {
-                newTickets: 15,
-            },
-            {
-                newTickets: 15,
-            },
-            {
-                newTickets: 15,
-            },
-            {
-                newTickets: 15,
-            },
-            {
-                newTickets: 15,
-            },
-            {
-                newTickets: 15,
-            },
-            {
-                newTickets: 15,
-            },
-            {
-                newTickets: 15,
-            },
-        ];
+    static init(days) {
+        const newDays = [];
 
-        this.tableBody = document.getElementById('day-table');
+        days.forEach((day, index) => {
+            newDays.push(new Day(day, index));
+        });
+
         this.templateTableRow = Template.get('day-table-row');
 
-        days.forEach((day) => this.all.push(new Day(day)));
-
-        this.all.forEach((day) => day.solveTickets());
-
-        this.buildRows();
-        Ticket.buildRows();
+        return newDays;
     }
 
-    static buildRows() {
-        this.all.forEach((day) => day.buildRow());
+    static buildRows(days, tableBody) {
+        days.forEach((day) => day.buildRow(tableBody));
     }
 
-    solveTickets() {
+    solveTickets(analysts, nextDay) {
         const carriedTickets = [...this.totalTickets];
 
-        Analyst.all.forEach((analyst, index) => {
+        analysts.forEach((analyst) => {
             const limit = carriedTickets.length - analyst.ticketsPerDay;
 
             while (carriedTickets.length && carriedTickets.length > limit) {
@@ -113,22 +47,32 @@ export class Day {
             } ;
         });
 
-        if (carriedTickets.length) {
-            const nextDay = Day.all[this.id + 1];
-
-            if (nextDay) {
-                nextDay.carryTickets(carriedTickets);
-            }
+        if (carriedTickets.length && nextDay) {
+            nextDay.carryTickets(carriedTickets);
         }
 
         this.carriedTickets = carriedTickets;
+
+        return this.newTickets;
     }
 
     carryTickets(tickets) {
         this.totalTickets = [...tickets, ...this.totalTickets];
     }
 
-    buildRow() {
+    getWeekDay() {
+        const days = [
+            'Monday',
+            'Tuesday',
+            'Wednesday',
+            'Thursday',
+            'Friday',
+        ];
+
+        return `${days[this.id % days.length]} (${parseInt(this.id / 5 + 1)})`;
+    }
+
+    buildRow(tableBody) {
         const row = Template.clone(Day.templateTableRow);
 
         const rowID = row.querySelector('.id');
@@ -146,8 +90,8 @@ export class Day {
         const days48 = this.newTickets.filter((ticket) => ticket.daysToSolve === 2).length;
         const days72 = this.newTickets.filter((ticket) => ticket.daysToSolve === 3).length;
         const daysOver = this.newTickets.filter((ticket) => ticket.daysToSolve > 3 || !ticket.isSolved).length;
-
-        rowID.textContent = this.id;
+       
+        rowID.textContent = this.getWeekDay();
         rowNew.textContent = this.newTickets.length;
         rowTotal.textContent = this.totalTickets.length;
         rowSolved.textContent = this.solvedTickets.length;
@@ -174,6 +118,6 @@ export class Day {
             rowOver.classList.add('zero');
         }
 
-        Day.tableBody.append(row)
+        tableBody.append(row);
     }
 }

@@ -3,7 +3,6 @@ import { Template } from './template.js';
 export class Ticket {
     static all = [];
 
-    static tableBody;
     static templateTableRow;
 
     constructor(dayMade) {
@@ -19,7 +18,6 @@ export class Ticket {
     static createTickets(dayMade, count) {
         const newTickets = [];
 
-        this.tableBody = document.getElementById('ticket-table');
         this.templateTableRow = Template.get('ticket-table-row');
 
         for(let i = 0; i < count; i++) {
@@ -32,8 +30,8 @@ export class Ticket {
         return newTickets;
     }
 
-    static buildRows() {
-        this.all.forEach((ticket) => ticket.buildRow())
+    static buildRows(tickets, tableBody) {
+        tickets.forEach((ticket) => ticket.buildRow(tableBody))
     }
 
     solve(daySolved) {
@@ -42,7 +40,7 @@ export class Ticket {
         this.daysToSolve = daySolved.id - this.dayMade.id + 1;
     }
 
-    buildRow() {
+    buildRow(tableBody) {
         const row = Template.clone(Ticket.templateTableRow);
 
         const rowID = row.querySelector('.id');
@@ -57,6 +55,6 @@ export class Ticket {
         rowTimeToSolve.textContent = this.daysToSolve ? `${this.daysToSolve * 24} hours` : '---'; 
         rowTimeOver.textContent = this.daysToSolve > 3 ? `${this.daysToSolve * 24 - 72} hours` : '---'; 
         
-        Ticket.tableBody.append(row)
+        tableBody.append(row)
     }
 }
