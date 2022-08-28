@@ -1,0 +1,130 @@
+h2 {
+    align-self: stretch;
+    margin: 0 0 var(--gutter-text-small) 0;
+    font-size: 2rem;
+}
+
+.text-centre {
+    text-align: center;
+}
+
+
+
+nav ul {
+    display: flex;
+    gap: var(--gutter-space);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav a {
+    display: block;
+    padding: var(--gutter-text-small);
+}
+
+nav a[aria-current="page"] {
+    font-weight: bold;
+}
+
+a {
+    color: var(--theme-link-hover);
+}
+
+a:hover, a:focus {
+    color: var(--theme-link);
+}
+
+a[href][rel*="external"] {
+    display: inline-flex;
+}
+
+nav a[href][rel*="external"] {
+    display: flex;
+}
+
+a[href][rel*="external"]::after {
+    content: "";
+    display: inline-block;
+    width: .95em;
+    height: .95em;
+    margin-left: calc(.75 * var(--gutter-space-small));
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 768 1024'%3E%3Cpath fill='%23330F4E' d='M640 768H128V257.906L256 256V128H0v768h768V576H640v192zM384 128l128 128-192 192 128 128 192-192 128 128V128H384z'/%3E%3C/svg%3E") no-repeat;
+}
+
+a[href][rel*="external"]:hover::after, a[rel*="external"]:focus::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 768 1024'%3E%3Cpath fill='%634380' d='M640 768H128V257.906L256 256V128H0v768h768V576H640v192zM384 128l128 128-192 192 128 128 192-192 128 128V128H384z'/%3E%3C/svg%3E");
+}
+
+button {
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+input, textarea, select {
+    padding: var(--gutter-space-small);
+    border: 1px solid var(--theme-main-trim);
+    max-width: 100%;
+}
+
+
+
+
+
+table {
+    border-collapse: collapse;
+}
+
+table tbody tr {
+    border-top: 1px solid var(--theme-main-trim);
+}
+
+table tbody tr:nth-child(even) {
+    background-color: var(--theme-main);
+}
+
+table tbody tr:hover, table tbody tr:focus-within {
+    background-color: var(--theme-main-dark);
+}
+
+table th {
+    padding: var(--gutter-text-small);
+}
+
+table tbody td {
+    padding: var(--gutter-text-small);
+}
+
+table tfoot {
+    padding: var(--gutter-text-small);
+}
+
+table tfoot tr {
+    background-color: var(--theme-main-dark);
+}
+
+table tfoot tr th, table tfoot tr td {
+    padding: var(--gutter-text-small);
+}
+
+table tfoot th {
+    text-align: left;
+}
+
+table del {
+    margin-right: var(--gutter-text-small);
+    font-size: .9em;
+}
+
+
+
+
+
+
+
+
+table .zero {
+    color: #777;
+}

@@ -1,0 +1,54 @@
+@import url(./styles/structure.css);
+@import url(./styles/global.css);
+@import url(./styles/component.css);
+
+:root {
+    --gutter-text: 1.6rem;
+    --gutter-text-small: 1rem;
+    --gutter-text-large: 2rem;
+    --gutter-space: .75rem;
+    --gutter-space-small: .5rem;
+    --gutter-space-large: 2.5rem;
+
+    --theme-main: rgb(250, 244, 255);
+    --theme-main-dark: rgb(179, 159, 196);
+    --theme-main-trim: rgb(51, 15, 78);
+
+    --theme-link: #330F4E;
+    --theme-link-hover: #634380;
+
+    --theme-black: #000;
+    --theme-white: #FFF;
+    --theme-white-trans: rgba(255, 255, 255, .75);
+
+    --theme-warning: #EED1AF;
+    --theme-error: #EE7A7A;
+
+    --transition-quick: 0s;
+
+    --columns-col2: 1fr;
+
+}
+
+
+@media screen and (min-width: 768px) {
+    :root {
+        --columns-col2: repeat(2, 1fr);
+    }
+}
+
+
+
+
+
+
+
+
+
+@media screen and (prefers-reduced-motion: no-preference) {
+    :root {
+        --transition-quick: .3s;
+    }
+}
+
+

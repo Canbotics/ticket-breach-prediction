@@ -1,0 +1,66 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-size: 1.6rem;
+}
+
+#sitehead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--gutter-space) var(--gutter-text);
+    font-size: 1.8rem;
+    background-color: var(--theme-main);
+}
+
+#sitehead h1 {
+    margin: 0;
+    font-size: 2.4rem;
+}
+
+#content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: var(--gutter-text);
+}
+
+#content > section:not([hidden]) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#sitefoot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--gutter-space) var(--gutter-text);
+    font-size: 1.4rem;
+    background-color: var(--theme-main);
+}
+
+#sitefoot small {
+    font-size: 1em;
+}
+
+#sitefoot nav a {
+    padding: .25rem;
+}
+
+
+
+
+
