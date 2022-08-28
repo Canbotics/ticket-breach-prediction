@@ -21,6 +21,14 @@ export class Tabnav {
     }
 }
 
+export class ProjectionSwitcher extends Tabnav {
+    static init() {
+        const tabNavs = document.querySelectorAll('.projection-switcher.comp');
+
+        tabNavs.forEach((tabnav) => new Tabnav(tabnav, this));
+    }
+}
+
 class Tab {
     constructor(element, tablist) {
         this.element = element;
