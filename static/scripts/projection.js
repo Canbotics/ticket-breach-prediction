@@ -56,7 +56,6 @@ export class Projection {
 
         uri = uri.replace(/\s+/g, "-");
         uri = uri.replace(/[^a-z\d-]/g, "");
-        uri.replace(" ", "-");
 
         return uri;
     }
