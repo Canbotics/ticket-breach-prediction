@@ -10,14 +10,13 @@
         <script src="./static/scripts.js" type="module"></script>
 
         <link rel="stylesheet" href="./static/styles.css">
-        <link rel="stylesheet" href="./static/styles/technical-question-breaches.css">
     </head>
     <body>
         <header id="sitehead">
             <h1>Technical Question Breaches</h1>
         </header>
         <main id="content">
-            <div id="page-switcher" class="comp tabnav" role="tablist">
+            <div id="projection-switcher" class="comp tabnav" role="tablist">
                 <button id="tab15-10" role="tab" aria-controls="view15-10" aria-selected="true">15 - 10</button>
                 <button id="tabview2" role="tab" aria-controls="viewview2" aria-selected="false">View 2</button>
             </div>
@@ -60,7 +59,7 @@
                 </table>
             </section>
 
-            <section id="viewview2" role="panel" aria-labelledby="tabview2">
+            <section id="viewview2" role="panel" aria-labelledby="tabview2" hidden>
                 <h2>Days</h2>
 
                 <table class="comp text-centre">
@@ -109,10 +108,10 @@
             </nav>
         </footer>
         <div id="templates">
-            <template id="tablist-tab">
+            <template id="projection-tab">
                 <button id="tab" role="tab" aria-controls="view" aria-selected="false">label</button>
             </template>
-            <template id="tablist-panel">
+            <template id="projection-panel">
                 <section id="view" role="panel" aria-labelledby="tab">
                     <h2>Days</h2>
     
