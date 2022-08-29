@@ -4,7 +4,9 @@ import { Analyst } from './analyst.js';
 import { Ticket } from './ticket.js';
 
 export class Day {
+    static addDay;
     static templateTableRow;
+    static templateAddDay;
 
     constructor(newTickets, id) {
         this.id = id;
@@ -16,14 +18,25 @@ export class Day {
         this.solvedTickets = [];
     }
 
-    static init(days) {
+    static init() {
+        this.templateTableRow = Template.get('day-table-row');
+
+        this.templateAddDay = Template.get('add-day-li');
+        this.addDay = document.getElementById('form-add-day');
+
+        const addButton = this.addDay.querySelector('.add');
+
+        addButton.addEventListener('click', (event) => {
+            this.formAddDays();
+        });
+    }
+
+    static populateDays(days) {
         const newDays = [];
 
         days.forEach((day, index) => {
             newDays.push(new Day(day, index));
         });
-
-        this.templateTableRow = Template.get('day-table-row');
 
         return newDays;
     }
@@ -31,6 +44,78 @@ export class Day {
     static buildRows(days, tableBody) {
         days.forEach((day) => day.buildRow(tableBody));
     }
+
+    static formAddAnalyst(count) {
+        const analysts = ['Michael','Matthew','Laura','Allison','Sam',];
+        const li = Template.clone(this.templateAddAnalyst);
+        const name = li.querySelector('.name');
+
+        name.value = analysts[count] || "";
+
+        this.addAnalyst.append(li);
+    }
+
+    static formAddDays(count) {
+        const form = document.getElementById('form-add-day');
+        const dayCount = parseInt(form.querySelector('.days').value) || 0;
+        const ticketAverage = parseInt(form.querySelector('.tickets').value) || 0;
+
+        const range = Math.ceil(ticketAverage * .15);
+        const rangeValues = [];
+
+        for(let i = 0; i < parseInt(dayCount / 2); i++) {
+            const flux = Math.ceil(Math.random() * range);
+
+            rangeValues.push(flux);
+            rangeValues.push(flux * -1);
+        }
+
+        if (rangeValues.length < dayCount) {
+            rangeValues.push(0);
+        }
+
+        this.shuffleArray(rangeValues);
+
+        rangeValues.forEach((flux, index) => {
+            const li = Template.clone(this.templateAddDay);
+            const label = li.querySelector('label');
+            const tickets = li.querySelector('.tickets');
+
+            tickets.id = tickets.id + index;
+            tickets.value = ticketAverage + flux;
+
+            label.setAttribute('for', label.getAttribute('for') + index)
+            label.textContent = this.getWeekDay(index);
+
+            this.addDay.append(li)
+        })
+
+        console.log(range, rangeValues)
+
+        console.log(dayCount)
+        console.log(ticketAverage)
+    }
+
+    static getWeekDay(id) {
+        const days = [
+            'Monday',
+            'Tuesday',
+            'Wednesday',
+            'Thursday',
+            'Friday',
+        ];
+
+        return `${days[id % days.length]} (${parseInt(id / 5 + 1)})`;
+    }
+
+    static shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    
 
     solveTickets(analysts, nextDay) {
         const carriedTickets = [...this.totalTickets];
@@ -60,18 +145,6 @@ export class Day {
         this.totalTickets = [...tickets, ...this.totalTickets];
     }
 
-    getWeekDay() {
-        const days = [
-            'Monday',
-            'Tuesday',
-            'Wednesday',
-            'Thursday',
-            'Friday',
-        ];
-
-        return `${days[this.id % days.length]} (${parseInt(this.id / 5 + 1)})`;
-    }
-
     buildRow(tableBody) {
         const row = Template.clone(Day.templateTableRow);
 
@@ -91,7 +164,7 @@ export class Day {
         const days72 = this.newTickets.filter((ticket) => ticket.daysToSolve === 3).length;
         const daysOver = this.newTickets.filter((ticket) => ticket.daysToSolve > 3 || !ticket.isSolved).length;
        
-        rowID.textContent = this.getWeekDay();
+        rowID.textContent = Day.getWeekDay(this.id);
         rowNew.textContent = this.newTickets.length;
         rowTotal.textContent = this.totalTickets.length;
         rowSolved.textContent = this.solvedTickets.length;
