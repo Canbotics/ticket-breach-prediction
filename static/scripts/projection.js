@@ -61,14 +61,9 @@ export class Projection {
             const analysts = [];
             const days = [];
 
-            console.log(analysts)
-            console.log(days)
-
             listAnalysts.forEach((analyst) => {
                 const name = analyst.querySelector('.name').value.trim();
                 const ticketsPerDay = parseInt(analyst.querySelector('.tickets').value);
-
-                console.log(analyst.querySelector('.tickets'), analyst.querySelector('.tickets').value)
 
                 analysts.push({
                     name: name,
@@ -91,7 +86,7 @@ export class Projection {
             newProjection.panel.removeAttribute('hidden');
 
             downloadButton.addEventListener('click', (event) => {
-                console.log(newProjection.export());
+                newProjection.export();
             });
 
         })
