@@ -17,9 +17,12 @@
     z-index: 10;
     margin: calc(-1 * var(--gutter-text)) calc(-1 * var(--gutter-text)) calc(var(--gutter-text));
     padding: 0 var(--gutter-text);
-    /* margin-bottom: ; */
     background-color: #FFF;
     border-bottom: 3px solid var(--theme-main-dark);
+}
+
+#projection-switcher div {
+    display: inline;
 }
 
 #projection-switcher button {
@@ -36,6 +39,10 @@
 }
 #projection-switcher button[aria-selected="true"] {
     border-bottom: 5px solid var(--theme-main-trim);
+}
+
+#projection-switcher #tab-add-projection {
+    margin-left: calc(2 * var(--gutter-space-large));
 }
 
 
@@ -249,7 +256,10 @@
 
 
 
-
+.text {
+    width: 100%;
+    max-width: 50em;
+}
 
 
 

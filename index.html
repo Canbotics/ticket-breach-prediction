@@ -17,7 +17,51 @@
         </header>
         <main id="content">
             <div id="projection-switcher" class="comp projection-switcher" role="tablist">
+                <div></div>
+                <button id="tab-add-projection" role="tab" aria-controls="panel-add-projection" aria-selected="false">Add Projection</button>
             </div>
+
+            <section id="panel-add-projection" role="panel" aria-labelledby="tab-add-projection" hidden>
+                <h2>Analysts</h2>
+
+                <div id="form-add-analyst" class="comp text">
+                    <button class="add" data-count="0">Add Analyst</button>
+                    <ul>
+                    </ul>
+                </div>
+
+                <h2>Days</h2>
+
+                <div id="form-add-day" class="comp text">
+                    <label>
+                        Days
+                        <input type="number" class="days">
+                    </label>
+                    <label>
+                        Tickets
+                        <input type="number" class="tickets">
+                    </label>
+                    <button class="add">Add Days</button>
+                    <ul>
+                    </ul>
+                </div>
+
+                <h2>Projection</h2>
+
+                <div class="comp text">
+                    <label>Projection Name:
+                        <input id="label-add-projection">
+                    </label>
+                    <button id="button-add-projection">Add Projection</button>
+
+                </div>
+                <div class="comp text">
+                    <button id="button-download-projection">Download Projection</button>
+                </div>
+                
+
+            </section>
+
         </main>
         <footer id="sitefoot">
             <small>(ɔ)2022</small>
@@ -93,6 +137,27 @@
                     <td class="time-to-solve">time to solve</td>
                     <td class="time-over">overage</td>
                 </tr>                
+            </template>
+            <template id="add-analyst-li">
+                <li>
+                    <label>
+                        Name
+                        <input class="name">
+                    </label>
+                    <label>
+                        Tickets
+                        <input type="number" class="tickets">
+                    </label>
+                </li>
+            </template>
+            <template id="add-day-li">
+                <li>
+                    <label for="field-day-">
+                        Day
+                        
+                    </label>
+                    <input id="field-day-" class="tickets">
+                </li>
             </template>
         </div>
     </body>
