@@ -1,6 +1,4 @@
-.comp {
-    /* width: 100%; */
-}
+/* .comp {} */
 
 .comp + .comp {
     margin-top: var(--gutter-space-large);
@@ -124,9 +122,7 @@
 
 
 
-.sort {
-
-}
+/* .sort {} */
 
 .sort button {
     display: flex;
@@ -251,8 +247,7 @@
 
 
 
-.tabnav {
-}
+/* .tabnav {} */
 
 
 
@@ -269,7 +264,6 @@
 
 .cols {
     display: grid;
-    grid-template-columns: ;
     width: 100%;
 }
 
