@@ -7,6 +7,7 @@ export class Analyst {
     constructor(analyst) {
         this.name = analyst.name;
         this.ticketsPerDay = analyst.ticketsPerDay;
+        this.isPercentage = analyst.isPercentage;
     }
 
     static init() {
