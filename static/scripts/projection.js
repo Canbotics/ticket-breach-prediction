@@ -7,6 +7,8 @@ import { Day } from './day.js';
 import { Ticket } from './ticket.js';
 
 export class Projection {
+    static all = [];
+
     static tabList;
     static content;
 
@@ -31,10 +33,14 @@ export class Projection {
 
         Day.buildRows(this.days, this.dayTableBody);
         Ticket.buildRows(this.tickets, this.ticketTableBody);
+
+        Projection.all.push(this);
     }
 
     static init() {
         const addProjection = document.getElementById('button-add-projection');
+        const downloadButton = document.getElementById('button-download-projection');
+        const clearButton = document.getElementById('clear-form');
 
         this.tabList = document.querySelector('#projection-switcher > div');
         this.content = document.getElementById('content');
@@ -56,7 +62,6 @@ export class Projection {
             const label = document.getElementById('label-add-projection').value.trim();
             const listAnalysts = document.querySelectorAll('#form-add-analyst li');
             const listDays = document.querySelectorAll('#form-add-day li');
-            const downloadButton = document.getElementById('button-download-projection');
 
             const analysts = [];
             const days = [];
@@ -64,10 +69,12 @@ export class Projection {
             listAnalysts.forEach((analyst) => {
                 const name = analyst.querySelector('.name').value.trim();
                 const ticketsPerDay = parseInt(analyst.querySelector('.tickets').value);
+                const isPercentage = analyst.querySelector('.percentage').checked;
 
                 analysts.push({
                     name: name,
                     ticketsPerDay: ticketsPerDay,
+                    isPercentage: isPercentage,
                 });
             });
 
@@ -84,11 +91,18 @@ export class Projection {
             }, 5);
 
             newProjection.panel.removeAttribute('hidden');
+        });
 
-            downloadButton.addEventListener('click', (event) => {
-                newProjection.export();
-            });
+        downloadButton.addEventListener('click', (event) => {
+            this.all[this.all.length - 1].export();
+        });
 
+        clearButton.addEventListener('click', (event) => {
+            const lis = document.querySelectorAll('#panel-add-projection li');
+            const analystButton = document.querySelector('#form-add-analyst .add');
+
+            lis.forEach((li) => li.remove());
+            analystButton.dataset.count = 0;
         })
     }
 
@@ -131,6 +145,7 @@ export class Projection {
             return {
                 name: analyst.name,
                 ticketsPerDay: analyst.ticketsPerDay,
+                isPercentage: analyst.isPercentage,
             };
         });
         const days = this.days.map((day) => day.newTickets.length);
@@ -145,7 +160,7 @@ export class Projection {
         const link = document.createElement('a');
 
         link.href = window.URL.createObjectURL(blob);
-        link.download = `projection-${parseInt(Math.random() * 1000)}.json`;
+        link.download = `projection-${this.uri}-${parseInt(Math.random() * 1000)}.json`;
         link.dataset.downloadurl = ["text/json", link.download, link.href].join(":");
 
         const event = new MouseEvent("click", {
