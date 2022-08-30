@@ -41,7 +41,8 @@
                         Tickets
                         <input type="number" class="tickets">
                     </label>
-                    <button class="add">Add Days</button>
+                    <button class="add" data-static="true">Add Static Days</button>
+                    <button class="add">Add Average Days</button>
                     <ul>
                     </ul>
                 </div>
@@ -57,6 +58,7 @@
                 </div>
                 <div class="comp text">
                     <button id="button-download-projection">Download Projection</button>
+                    <button id="clear-form">Clear Form</button>
                 </div>
                 
 
@@ -148,15 +150,18 @@
                         Tickets
                         <input type="number" class="tickets">
                     </label>
+                    <label>
+                        <input type="checkbox" class="percentage" value="true">
+                        %
+                    </label>
                 </li>
             </template>
             <template id="add-day-li">
                 <li>
-                    <label for="field-day-">
-                        Day
-                        
+                    <label>
+                        <span>Day</span>
+                        <input class="tickets">
                     </label>
-                    <input id="field-day-" class="tickets">
                 </li>
             </template>
         </div>
