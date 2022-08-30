@@ -24,10 +24,12 @@ export class Day {
         this.templateAddDay = Template.get('add-day-li');
         this.addDay = document.getElementById('form-add-day');
 
-        const addButton = this.addDay.querySelector('.add');
+        const addButtons = this.addDay.querySelectorAll('.add');
 
-        addButton.addEventListener('click', (event) => {
-            this.formAddDays();
+        addButtons.forEach((button) => {
+            button.addEventListener('click', (event) => {
+                this.formAddDays(button.dataset.static === 'true');
+            });
         });
     }
 
@@ -55,7 +57,7 @@ export class Day {
         this.addAnalyst.append(li);
     }
 
-    static formAddDays(count) {
+    static formAddDays(staticTicketCount = true) {
         const form = document.getElementById('form-add-day');
         const dayCount = parseInt(form.querySelector('.days').value) || 0;
         const ticketAverage = parseInt(form.querySelector('.tickets').value) || 0;
@@ -63,37 +65,36 @@ export class Day {
         const range = Math.ceil(ticketAverage * .15);
         const rangeValues = [];
 
-        for(let i = 0; i < parseInt(dayCount / 2); i++) {
-            const flux = Math.ceil(Math.random() * range);
+        if (staticTicketCount) {
+            for(let i = 0; i < dayCount; i++) {
+                rangeValues.push(0);
+            }
+        } else {
+            for(let i = 0; i < parseInt(dayCount / 2); i++) {
+                const flux = Math.ceil(Math.random() * range);
 
-            rangeValues.push(flux);
-            rangeValues.push(flux * -1);
+                rangeValues.push(flux);
+                rangeValues.push(flux * -1);
+            }
+
+            if (rangeValues.length < dayCount) {
+                rangeValues.push(0);
+            }
+
+            this.shuffleArray(rangeValues);
         }
-
-        if (rangeValues.length < dayCount) {
-            rangeValues.push(0);
-        }
-
-        this.shuffleArray(rangeValues);
 
         rangeValues.forEach((flux, index) => {
             const li = Template.clone(this.templateAddDay);
-            const label = li.querySelector('label');
+            const label = li.querySelector('label > span');
             const tickets = li.querySelector('.tickets');
 
-            tickets.id = tickets.id + index;
             tickets.value = ticketAverage + flux;
 
-            label.setAttribute('for', label.getAttribute('for') + index)
             label.textContent = this.getWeekDay(index);
 
-            this.addDay.append(li)
-        })
-
-        console.log(range, rangeValues)
-
-        console.log(dayCount)
-        console.log(ticketAverage)
+            this.addDay.append(li);
+        });
     }
 
     static getWeekDay(id) {
@@ -105,7 +106,7 @@ export class Day {
             'Friday',
         ];
 
-        return `${days[id % days.length]} (${parseInt(id / 5 + 1)})`;
+        return `${id} ${days[id % days.length]} (${parseInt(id / 5 + 1)})`;
     }
 
     static shuffleArray(array) {
