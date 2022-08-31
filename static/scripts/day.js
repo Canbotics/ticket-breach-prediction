@@ -16,6 +16,8 @@ export class Day {
         this.carriedTickets;
 
         this.solvedTickets = [];
+
+        this.analystsSolvedTickets = [];
     }
 
     static init() {
@@ -125,13 +127,19 @@ export class Day {
             const percentage = analyst.isPercentage ? 1 - analyst.ticketsPerDay / 100 : 0;
             const limit = percentage ? parseInt(carriedTickets.length * percentage) : carriedTickets.length - analyst.ticketsPerDay;
 
+            let ticketsSolved = 0;
+
             while (carriedTickets.length && carriedTickets.length > limit) {
                 const ticket = carriedTickets.shift();
 
-                ticket.solve(this);
+                ticket.solve(this, analyst);
 
                 this.solvedTickets.push(ticket);
+
+                ticketsSolved += 1;
             } ;
+
+            this.analystsSolvedTickets.push([analyst.name, ticketsSolved])
         });
 
         if (carriedTickets.length && nextDay) {
@@ -192,6 +200,15 @@ export class Day {
         if (!daysOver) {
             rowOver.classList.add('zero');
         }
+
+        this.analystsSolvedTickets.forEach((analyst) => {
+            const td = document.createElement('td');
+
+            td.textContent = analyst[1];
+            td.classList.add('text-centre');
+
+            row.append(td);
+        })
 
         tableBody.append(row);
     }

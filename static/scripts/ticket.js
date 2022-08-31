@@ -13,6 +13,8 @@ export class Ticket {
 
         this.daySolved;
         this.daysToSolve;
+
+        this.analystSolved;
     }
 
     static createTickets(dayMade, count) {
@@ -34,10 +36,15 @@ export class Ticket {
         tickets.forEach((ticket) => ticket.buildRow(tableBody))
     }
 
-    solve(daySolved) {
+    solve(daySolved, analystSolved) {
         this.isSolved = true;
+        
         this.daySolved = daySolved;
         this.daysToSolve = daySolved.id - this.dayMade.id + 1;
+
+        this.analystSolved = analystSolved;
+
+        analystSolved.addTicket(this);
     }
 
     buildRow(tableBody) {

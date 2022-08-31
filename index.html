@@ -81,11 +81,27 @@
             </template>
             <template id="projection-panel">
                 <section id="panel" role="panel" aria-labelledby="tab">
-                    <h2>Days</h2>
+                    <h2 class="comp heading"></h2>
+                    <h3 class="comp heading">Analysts</h3>
+
+                    <table class="comp">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Capacity</th>
+                                <th>Total Tickets</th>
+                                <th>Average</th>
+                            </tr>
+                        </thead>
+                        <tbody class="analyst-table-body">
+                        </tbody>
+                    </table>
+
+                    <h3 class="comp heading">Days</h3>
     
                     <table class="comp">
                         <thead class="text-centre">
-                            <tr>
+                            <tr class="day-table-head">
                                 <th>Day</th>
                                 <th>New Tickets</th>
                                 <th>Total Tickets</th>
@@ -101,23 +117,39 @@
                         </tbody>
                     </table>
     
-                    <h2>Tickets</h2>
-    
-                    <table class="comp text-centre">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Day Made</th>
-                                <th>Day Solved</th>
-                                <th>Time to Solve</th>
-                                <th>Time Over</th>
-                            </tr>
-                        </thead>
-                        <tbody class="ticket-table-body">
-                        </tbody>
-                    </table>
+                    <h3 class="comp heading">Tickets</h3>
+
+                    <div id="disclaimer-tickets" class="comp disclaimer">
+                        <button id="disclaimer-tickets-button" class="disclaimer-button" data-false="Show Tickets Data" data-true="Hide Tickets Data" aria-expanded="false" aria-controls="disclaimer-tickets-section">
+                            <svg width="12" height="12"><path d="M1 1v10l7-5z"/></svg>
+                            <span>Show Tickets Data</span>
+                        </button>
+                        <div id="disclaimer-tickets-section" class="disclaimer-section">
+                            <table class="comp text-centre">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Day Made</th>
+                                        <th>Day Solved</th>
+                                        <th>Time to Solve</th>
+                                        <th>Time Over</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="ticket-table-body">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </section>
             </template>
+            <template id="analyst-table-row">
+                <tr>
+                    <td class="name">name</td>
+                    <td class="capacity text-centre">capacity</td>
+                    <td class="total text-centre">total</td>
+                    <td class="average text-centre">average</td>
+                </tr>                
+            </template> 
             <template id="day-table-row">
                 <tr>
                     <td class="id">ID</td>

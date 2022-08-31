@@ -1,8 +1,18 @@
-h2 {
-    align-self: stretch;
+
+h2, h3 {
     margin: 0 0 var(--gutter-text-small) 0;
+}
+
+h2 {
     font-size: 2rem;
 }
+
+h3 {
+    /* align-self: stretch; */
+    font-size: 1.8rem;
+}
+
+
 
 .text-centre {
     text-align: center;

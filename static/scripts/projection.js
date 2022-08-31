@@ -1,4 +1,4 @@
-import { ProjectionSwitcher } from './components/tabnav.js';
+import { Component } from './component.js';
 
 import { Template } from './template.js';
 
@@ -19,11 +19,11 @@ export class Projection {
         this.label = data.label;
         this.uri = Projection.createURI(this.label);
 
-        this.buildPanel(index);
-
         this.analysts = Analyst.populateAnalysts(data.analysts);
         this.days = Day.populateDays(data.days);
         this.tickets = [];
+
+        this.buildPanel(index);
 
         this.days.forEach((day, index) => {
             const nextDay = this.days[index + 1];
@@ -31,6 +31,7 @@ export class Projection {
             this.tickets.push(...day.solveTickets(this.analysts, nextDay));
         });
 
+        Analyst.buildRows(this.analysts, this.analystTableBody, this.days);
         Day.buildRows(this.days, this.dayTableBody);
         Ticket.buildRows(this.tickets, this.ticketTableBody);
 
@@ -55,7 +56,7 @@ export class Projection {
                 new Projection(projection, index);                
             });
 
-            ProjectionSwitcher.init();
+            Component.initLate();
         });
 
         addProjection.addEventListener('click', (event) => {
@@ -119,6 +120,8 @@ export class Projection {
         this.tab = Template.clone(Projection.templateTab);
         this.panel = Template.clone(Projection.templatePanel);
 
+        this.analystTableBody = this.panel.querySelector('.analyst-table-body');
+        this.dayTableHead = this.panel.querySelector('.day-table-head');
         this.dayTableBody = this.panel.querySelector('.day-table-body');
         this.ticketTableBody = this.panel.querySelector('.ticket-table-body');
 
@@ -129,12 +132,24 @@ export class Projection {
         this.panel.id = `panel-${this.uri}`;
         this.panel.ariaLabelledby = `tab-${this.uri}`;
 
+        const panelHeading = this.panel.querySelector('h2');
+
+        panelHeading.textContent = this.label;
+
         if (!index) {
             this.tab.setAttribute('aria-selected', true);
         } else {
             this.tab.setAttribute('aria-selected', false);
             this.panel.setAttribute('hidden', '');
         }
+
+        this.analysts.forEach((analyst) => {
+            const th = document.createElement('th');
+
+            th.textContent = analyst.name;
+
+            this.dayTableHead.append(th);
+        })
 
         Projection.tabList.append(this.tab);
         Projection.content.append(this.panel);
