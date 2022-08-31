@@ -19,11 +19,11 @@ export class Projection {
         this.label = data.label;
         this.uri = Projection.createURI(this.label);
 
-        this.buildPanel(index);
-
         this.analysts = Analyst.populateAnalysts(data.analysts);
         this.days = Day.populateDays(data.days);
         this.tickets = [];
+
+        this.buildPanel(index);
 
         this.days.forEach((day, index) => {
             const nextDay = this.days[index + 1];
@@ -119,6 +119,7 @@ export class Projection {
         this.tab = Template.clone(Projection.templateTab);
         this.panel = Template.clone(Projection.templatePanel);
 
+        this.dayTableHead = this.panel.querySelector('.day-table-head');
         this.dayTableBody = this.panel.querySelector('.day-table-body');
         this.ticketTableBody = this.panel.querySelector('.ticket-table-body');
 
@@ -135,6 +136,14 @@ export class Projection {
             this.tab.setAttribute('aria-selected', false);
             this.panel.setAttribute('hidden', '');
         }
+
+        this.analysts.forEach((analyst) => {
+            const th = document.createElement('th');
+
+            th.textContent = analyst.name;
+
+            this.dayTableHead.append(th);
+        })
 
         Projection.tabList.append(this.tab);
         Projection.content.append(this.panel);
