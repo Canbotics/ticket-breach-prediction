@@ -1,4 +1,4 @@
-import { ProjectionSwitcher } from './components/tabnav.js';
+import { Component } from './component.js';
 
 import { Template } from './template.js';
 
@@ -56,7 +56,7 @@ export class Projection {
                 new Projection(projection, index);                
             });
 
-            ProjectionSwitcher.init();
+            Component.initLate();
         });
 
         addProjection.addEventListener('click', (event) => {
