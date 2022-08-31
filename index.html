@@ -81,7 +81,23 @@
             </template>
             <template id="projection-panel">
                 <section id="panel" role="panel" aria-labelledby="tab">
-                    <h2>Days</h2>
+                    <h2 class="comp heading"></h2>
+                    <h3 class="comp heading">Analysts</h3>
+
+                    <table class="comp">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Capacity</th>
+                                <th>Total Tickets</th>
+                                <th>Average</th>
+                            </tr>
+                        </thead>
+                        <tbody class="analyst-table-body">
+                        </tbody>
+                    </table>
+
+                    <h3 class="comp heading">Days</h3>
     
                     <table class="comp">
                         <thead class="text-centre">
@@ -101,7 +117,7 @@
                         </tbody>
                     </table>
     
-                    <h2>Tickets</h2>
+                    <h3 class="comp heading">Tickets</h3>
     
                     <table class="comp text-centre">
                         <thead>
@@ -118,6 +134,14 @@
                     </table>
                 </section>
             </template>
+            <template id="analyst-table-row">
+                <tr>
+                    <td class="name">name</td>
+                    <td class="capacity text-centre">capacity</td>
+                    <td class="total text-centre">total</td>
+                    <td class="average text-centre">average</td>
+                </tr>                
+            </template> 
             <template id="day-table-row">
                 <tr>
                     <td class="id">ID</td>
