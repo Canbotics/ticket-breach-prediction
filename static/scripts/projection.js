@@ -71,11 +71,13 @@ export class Projection {
                 const name = analyst.querySelector('.name').value.trim();
                 const ticketsPerDay = parseInt(analyst.querySelector('.tickets').value);
                 const isPercentage = analyst.querySelector('.percentage').checked;
+                const isOverflow = analyst.querySelector('.overflow').checked;
 
                 analysts.push({
                     name: name,
                     ticketsPerDay: ticketsPerDay,
                     isPercentage: isPercentage,
+                    isOverflow: isOverflow,
                 });
             });
 
