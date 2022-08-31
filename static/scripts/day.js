@@ -118,8 +118,6 @@ export class Day {
         }
     }
 
-    
-
     solveTickets(analysts, nextDay) {
         const carriedTickets = [...this.totalTickets];
 
