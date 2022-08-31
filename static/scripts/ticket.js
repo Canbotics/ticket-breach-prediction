@@ -43,6 +43,8 @@ export class Ticket {
         this.daysToSolve = daySolved.id - this.dayMade.id + 1;
 
         this.analystSolved = analystSolved;
+
+        analystSolved.addTicket(this);
     }
 
     buildRow(tableBody) {
