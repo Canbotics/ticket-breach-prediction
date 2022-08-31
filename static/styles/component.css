@@ -216,6 +216,8 @@
 }
 
 .disclaimer-button {
+    position: sticky;
+    top: 4rem;
     width: 100%;
     padding: var(--gutter-text-small);
     text-align: left;
@@ -241,6 +243,10 @@
 
 [aria-expanded="true"] + .disclaimer-section {
     display: block;
+}
+
+.disclaimer-section table {
+    margin: auto;
 }
 
 

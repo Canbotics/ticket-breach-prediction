@@ -118,20 +118,28 @@
                     </table>
     
                     <h3 class="comp heading">Tickets</h3>
-    
-                    <table class="comp text-centre">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Day Made</th>
-                                <th>Day Solved</th>
-                                <th>Time to Solve</th>
-                                <th>Time Over</th>
-                            </tr>
-                        </thead>
-                        <tbody class="ticket-table-body">
-                        </tbody>
-                    </table>
+
+                    <div id="disclaimer-tickets" class="comp disclaimer">
+                        <button id="disclaimer-tickets-button" class="disclaimer-button" data-false="Show Tickets Data" data-true="Hide Tickets Data" aria-expanded="false" aria-controls="disclaimer-tickets-section">
+                            <svg width="12" height="12"><path d="M1 1v10l7-5z"/></svg>
+                            <span>Show Tickets Data</span>
+                        </button>
+                        <div id="disclaimer-tickets-section" class="disclaimer-section">
+                            <table class="comp text-centre">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Day Made</th>
+                                        <th>Day Solved</th>
+                                        <th>Time to Solve</th>
+                                        <th>Time Over</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="ticket-table-body">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </section>
             </template>
             <template id="analyst-table-row">
