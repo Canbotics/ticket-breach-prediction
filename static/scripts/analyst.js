@@ -10,6 +10,7 @@ export class Analyst {
         this.name = analyst.name;
         this.ticketsPerDay = analyst.ticketsPerDay;
         this.isPercentage = analyst.isPercentage;
+        this.isOverflow = analyst.isOverflow;
 
         this.tickets = [];
     }
@@ -67,8 +68,16 @@ export class Analyst {
         const rowTotal = row.querySelector('.total');
         const rowAverage = row.querySelector('.average');
 
+        let capacity;
+
+        if (this.isPercentage) {
+            capacity = this.isOverflow ? `${this.ticketsPerDay}% O` : `${this.ticketsPerDay}%`;
+        } else {
+            capacity = this.ticketsPerDay;
+        }
+
         rowName.textContent = this.name;
-        rowCapacity.textContent = this.isPercentage ? `${this.ticketsPerDay}%` : this.ticketsPerDay;
+        rowCapacity.textContent = capacity;
         rowTotal.textContent = this.tickets.length;
         rowAverage.textContent = this.tickets.length / days.length;
 

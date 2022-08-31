@@ -118,18 +118,24 @@ export class Day {
         }
     }
 
-    
-
     solveTickets(analysts, nextDay) {
         const carriedTickets = [...this.totalTickets];
 
         analysts.forEach((analyst) => {
-            const percentage = analyst.isPercentage ? 1 - analyst.ticketsPerDay / 100 : 0;
-            const limit = percentage ? parseInt(carriedTickets.length * percentage) : carriedTickets.length - analyst.ticketsPerDay;
+            const percentage = analyst.isPercentage ? analyst.ticketsPerDay / 100 : 0;
 
+            let limit = analyst.ticketsPerDay;
+
+            if (percentage) {
+                limit = Math.ceil(analyst.isOverflow ? carriedTickets.length * percentage : this.totalTickets.length * percentage);
+            }
+
+            let index = 0;
             let ticketsSolved = 0;
 
-            while (carriedTickets.length && carriedTickets.length > limit) {
+            while (carriedTickets.length && index < limit) {
+                index += 1;
+                
                 const ticket = carriedTickets.shift();
 
                 ticket.solve(this, analyst);
