@@ -122,7 +122,8 @@ export class Day {
         const carriedTickets = [...this.totalTickets];
 
         analysts.forEach((analyst) => {
-            const limit = carriedTickets.length - analyst.ticketsPerDay;
+            const percentage = analyst.isPercentage ? 1 - analyst.ticketsPerDay / 100 : 0;
+            const limit = percentage ? parseInt(carriedTickets.length * percentage) : carriedTickets.length - analyst.ticketsPerDay;
 
             while (carriedTickets.length && carriedTickets.length > limit) {
                 const ticket = carriedTickets.shift();
