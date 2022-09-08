@@ -8,7 +8,7 @@ export class Day {
     static templateTableRow;
     static templateAddDay;
 
-    constructor(newTickets, id) {
+    constructor(id, newTickets) {
         this.id = id;
 
         this.newTickets = Ticket.createTickets(this, newTickets);
@@ -39,7 +39,7 @@ export class Day {
         const newDays = [];
 
         days.forEach((day, index) => {
-            newDays.push(new Day(day, index));
+            newDays.push(new Day(index, day));
         });
 
         return newDays;

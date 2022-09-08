@@ -8,9 +8,9 @@ export class Analyst {
 
     constructor(analyst) {
         this.name = analyst.name;
-        this.ticketsPerDay = analyst.ticketsPerDay;
-        this.isPercentage = analyst.isPercentage;
-        this.isOverflow = analyst.isOverflow;
+        this.ticketsPerDay = analyst.ticketsPerDay || 0;
+        this.isPercentage = (analyst.isPercentage);
+        this.isOverflow = (analyst.isOverflow);
 
         this.tickets = [];
     }
