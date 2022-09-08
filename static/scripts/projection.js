@@ -69,7 +69,7 @@ export class Projection {
 
             listAnalysts.forEach((analyst) => {
                 const name = analyst.querySelector('.name').value.trim();
-                const ticketsPerDay = parseInt(analyst.querySelector('.tickets').value);
+                const ticketsPerDay = parseInt(analyst.querySelector('.tickets').value) || 0;
                 const isPercentage = analyst.querySelector('.percentage').checked;
                 const isOverflow = analyst.querySelector('.overflow').checked;
 
