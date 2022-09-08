@@ -163,6 +163,7 @@ export class Projection {
                 name: analyst.name,
                 ticketsPerDay: analyst.ticketsPerDay,
                 isPercentage: analyst.isPercentage,
+                isOverflow: analyst.isOverflow,
             };
         });
         const days = this.days.map((day) => day.newTickets.length);
